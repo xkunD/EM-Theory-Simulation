@@ -18,13 +18,22 @@ j=0+1i;
 Et=exp(-j*k*l1)./l1+exp(-j*k*l2)./l2;
 Et=Et.*conj(Et)/(max(Et)^2);
 %
+Et_approx = 2/(D)*(cos(k*d/2/D*x));
+Et_approx=Et_approx.*conj(Et_approx)/(max(Et_approx)^2);
+
+
+%
 y=x*100;            % converting to cm
-plot(y,abs(Et))
+plot(y,abs(Et));
+hold on;
+plot(y,Et_approx);
 axis([-50 50 0 1.2]);
 set(gca,'XTick',-50:10:50)
 title('{\bfInterference pattern}','FontSize',14)
 xlabel('{\bfDistance from the centre of screen (in cm)}')
 ylabel('{\bfRelative Intensity}')
 line([0 0],[0 1.2])
+legend('eqn.(1) without approximation', 'eqn.(2) with approximation','x = 0')
+hold off;
 % line([-0.5 0.5],[1 1],'linestyle',':')
 % text(-0.48, 1.1,'drawn by {\bf <...insert your name here...> }')
